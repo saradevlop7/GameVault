@@ -45,5 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterGames();
             });
         });
+
+        document.querySelector('.category-btn[data-genre="all"]').classList.add('active');
     }
 });
