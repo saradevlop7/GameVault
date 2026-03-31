@@ -1,4 +1,6 @@
-﻿function getCart() {
+﻿// script.js - Logique de l'application
+
+function getCart() {
     const cart = localStorage.getItem('cart');
     return cart ? JSON.parse(cart) : {};
 }
@@ -9,11 +11,12 @@ function saveCart(cart) {
 }
 
 function updateCartCount() {
-    const count = Object.values(getCart()).reduce((sum, qty) => sum + qty, 0);
     const countElement = document.getElementById('cart-count');
-    if (countElement) {
-        countElement.textContent = count;
-    }
+    if (!countElement) return;
+
+    const cart = getCart();
+    const count = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+    countElement.textContent = count;
 }
 
 function displayGames(gamesToShow) {
@@ -40,7 +43,8 @@ function displayGames(gamesToShow) {
 
     document.querySelectorAll('.add-to-cart').forEach(btn => {
         btn.addEventListener('click', () => {
-            addToCart(parseInt(btn.dataset.id));
+            const id = parseInt(btn.dataset.id);
+            addToCart(id);
         });
     });
 }
@@ -153,6 +157,8 @@ function displayCart() {
                 cart[id] = qty;
                 saveCart(cart);
                 displayCart();
+            } else {
+                displayCart();
             }
         });
     });
@@ -186,7 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.getElementById('games-container')) {
         displayGames(games);
-        document.getElementById('search-input').addEventListener('input', filterGames);
+
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', filterGames);
 
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -196,11 +204,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        document.querySelector('.category-btn[data-genre="all"]').classList.add('active');
+        const defaultCategory = document.querySelector('.category-btn[data-genre="all"]');
+        if (defaultCategory) {
+            defaultCategory.classList.add('active');
+        }
     }
 
     if (document.getElementById('cart-container')) {
         displayCart();
-        document.getElementById('order-btn').addEventListener('click', order);
+
+        const orderButton = document.getElementById('order-btn');
+        if (orderButton) {
+            orderButton.addEventListener('click', order);
+        }
     }
 });
