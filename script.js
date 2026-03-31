@@ -129,6 +129,19 @@ function displayCart() {
             displayCart();
         });
     });
+
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('change', () => {
+            const id = input.dataset.id;
+            const qty = parseInt(input.value);
+            if (qty > 0) {
+                const cart = getCart();
+                cart[id] = qty;
+                saveCart(cart);
+                displayCart();
+            }
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
