@@ -38,6 +38,19 @@ function displayGames(gamesToShow) {
         `;
         container.appendChild(card);
     });
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+            addToCart(parseInt(btn.dataset.id));
+        });
+    });
+}
+
+function addToCart(id) {
+    const cart = getCart();
+    cart[id] = (cart[id] || 0) + 1;
+    saveCart(cart);
+    alert('Jeu ajouté au panier !');
 }
 
 function filterGames() {
