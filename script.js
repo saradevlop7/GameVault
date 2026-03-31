@@ -1,11 +1,10 @@
-﻿let cartState = {};
-
-function getCart() {
-    return cartState;
+﻿function getCart() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : {};
 }
 
 function saveCart(cart) {
-    cartState = cart;
+    localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
 }
 
