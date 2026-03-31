@@ -155,6 +155,19 @@ function displayCart() {
     });
 }
 
+function order() {
+    const cart = getCart();
+    if (Object.keys(cart).length === 0) {
+        alert('Votre panier est vide !');
+        return;
+    }
+
+    localStorage.removeItem('cart');
+    updateCartCount();
+    displayCart();
+    alert('Commande passée avec succès ! Merci pour votre achat.');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
 
@@ -175,5 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.getElementById('cart-container')) {
         displayCart();
+        document.getElementById('order-btn').addEventListener('click', order);
     }
 });
