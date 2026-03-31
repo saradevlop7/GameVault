@@ -7,12 +7,13 @@
         const card = document.createElement('div');
         card.className = 'col-12 mb-4';
         card.innerHTML = `
-            <div class="card h-100">
+            <div class="card h-100 shadow-sm">
                 <img src="${game.image}" class="card-img-top" alt="${game.title}">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${game.title}</h5>
+                    <p class="card-text">Genre: ${game.genre}</p>
                     <p class="card-text fw-bold">Prix: ${game.price}€</p>
-                    <button class="btn btn-primary add-to-cart" data-id="${game.id}">Ajouter au panier</button>
+                    <button class="btn btn-primary mt-auto add-to-cart" data-id="${game.id}">Ajouter au panier</button>
                 </div>
             </div>
         `;
