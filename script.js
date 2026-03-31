@@ -23,7 +23,7 @@ function displayGames(gamesToShow) {
     container.innerHTML = '';
     gamesToShow.forEach(game => {
         const card = document.createElement('div');
-        card.className = 'col-12 mb-4';
+        card.className = 'col-12 col-md-3 mb-4';
         card.innerHTML = `
             <div class="card h-100 shadow-sm">
                 <img src="${game.image}" class="card-img-top" alt="${game.title}">
@@ -89,15 +89,28 @@ function displayCart() {
             item.className = 'card mb-3';
             item.innerHTML = `
                 <div class="card-body">
-                    <h5>${game.title}</h5>
-                    <p>Prix: ${game.price}€</p>
-                    <div class="input-group mb-2">
-                        <button class="btn btn-outline-secondary decrease-qty" data-id="${id}">-</button>
-                        <input type="number" class="form-control text-center" value="${qty}" min="1" data-id="${id}">
-                        <button class="btn btn-outline-secondary increase-qty" data-id="${id}">+</button>
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <img src="${game.image}" class="img-fluid" alt="${game.title}">
+                        </div>
+                        <div class="col-md-4">
+                            <h5>${game.title}</h5>
+                            <p>Prix: ${game.price}€</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <button class="btn btn-outline-secondary decrease-qty" data-id="${id}">-</button>
+                                <input type="number" class="form-control text-center" value="${qty}" min="1" data-id="${id}">
+                                <button class="btn btn-outline-secondary increase-qty" data-id="${id}">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="fw-bold">Sous-total: ${subtotal.toFixed(2)}€</p>
+                        </div>
+                        <div class="col-md-1 text-md-end mt-3 mt-md-0">
+                            <button class="btn btn-danger remove-item" data-id="${id}">Supprimer</button>
+                        </div>
                     </div>
-                    <p class="fw-bold">Sous-total: ${subtotal.toFixed(2)}€</p>
-                    <button class="btn btn-danger remove-item" data-id="${id}">Supprimer</button>
                 </div>
             `;
             container.appendChild(item);
