@@ -97,6 +97,7 @@ function displayCart() {
                         <button class="btn btn-outline-secondary increase-qty" data-id="${id}">+</button>
                     </div>
                     <p class="fw-bold">Sous-total: ${subtotal.toFixed(2)}€</p>
+                    <button class="btn btn-danger remove-item" data-id="${id}">Supprimer</button>
                 </div>
             `;
             container.appendChild(item);
@@ -140,6 +141,16 @@ function displayCart() {
                 saveCart(cart);
                 displayCart();
             }
+        });
+    });
+
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const cart = getCart();
+            delete cart[id];
+            saveCart(cart);
+            displayCart();
         });
     });
 }
