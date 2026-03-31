@@ -1,4 +1,23 @@
-﻿function displayGames(gamesToShow) {
+﻿let cartState = {};
+
+function getCart() {
+    return cartState;
+}
+
+function saveCart(cart) {
+    cartState = cart;
+    updateCartCount();
+}
+
+function updateCartCount() {
+    const count = Object.values(getCart()).reduce((sum, qty) => sum + qty, 0);
+    const countElement = document.getElementById('cart-count');
+    if (countElement) {
+        countElement.textContent = count;
+    }
+}
+
+function displayGames(gamesToShow) {
     const container = document.getElementById('games-container');
     if (!container) return;
 
@@ -34,6 +53,8 @@ function filterGames() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+
     if (document.getElementById('games-container')) {
         displayGames(games);
         document.getElementById('search-input').addEventListener('input', filterGames);
