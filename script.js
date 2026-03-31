@@ -76,10 +76,15 @@ function displayCart() {
         return;
     }
 
+    let total = 0;
+
     Object.keys(cart).forEach(id => {
         const game = games.find(item => item.id == id);
         if (game) {
             const qty = cart[id];
+            const subtotal = game.price * qty;
+            total += subtotal;
+
             const item = document.createElement('div');
             item.className = 'card mb-3';
             item.innerHTML = `
@@ -87,11 +92,17 @@ function displayCart() {
                     <h5>${game.title}</h5>
                     <p>Prix: ${game.price}€</p>
                     <p>Quantité: ${qty}</p>
+                    <p class="fw-bold">Sous-total: ${subtotal.toFixed(2)}€</p>
                 </div>
             `;
             container.appendChild(item);
         }
     });
+
+    const totalDiv = document.createElement('div');
+    totalDiv.className = 'text-end mt-3';
+    totalDiv.innerHTML = `<h4>Total: ${total.toFixed(2)}€</h4>`;
+    container.appendChild(totalDiv);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
