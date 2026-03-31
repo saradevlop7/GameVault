@@ -64,6 +64,36 @@ function filterGames() {
     displayGames(filtered);
 }
 
+function displayCart() {
+    const container = document.getElementById('cart-container');
+    if (!container) return;
+
+    const cart = getCart();
+    container.innerHTML = '';
+
+    if (Object.keys(cart).length === 0) {
+        container.innerHTML = '<p class="text-center">Votre panier est vide.</p>';
+        return;
+    }
+
+    Object.keys(cart).forEach(id => {
+        const game = games.find(item => item.id == id);
+        if (game) {
+            const qty = cart[id];
+            const item = document.createElement('div');
+            item.className = 'card mb-3';
+            item.innerHTML = `
+                <div class="card-body">
+                    <h5>${game.title}</h5>
+                    <p>Prix: ${game.price}€</p>
+                    <p>Quantité: ${qty}</p>
+                </div>
+            `;
+            container.appendChild(item);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
 
@@ -80,5 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelector('.category-btn[data-genre="all"]').classList.add('active');
+    }
+
+    if (document.getElementById('cart-container')) {
+        displayCart();
     }
 });
