@@ -91,7 +91,11 @@ function displayCart() {
                 <div class="card-body">
                     <h5>${game.title}</h5>
                     <p>Prix: ${game.price}€</p>
-                    <p>Quantité: ${qty}</p>
+                    <div class="input-group mb-2">
+                        <button class="btn btn-outline-secondary decrease-qty" data-id="${id}">-</button>
+                        <input type="number" class="form-control text-center" value="${qty}" min="1" data-id="${id}">
+                        <button class="btn btn-outline-secondary increase-qty" data-id="${id}">+</button>
+                    </div>
                     <p class="fw-bold">Sous-total: ${subtotal.toFixed(2)}€</p>
                 </div>
             `;
@@ -103,6 +107,28 @@ function displayCart() {
     totalDiv.className = 'text-end mt-3';
     totalDiv.innerHTML = `<h4>Total: ${total.toFixed(2)}€</h4>`;
     container.appendChild(totalDiv);
+
+    document.querySelectorAll('.decrease-qty').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const cart = getCart();
+            if (cart[id] > 1) {
+                cart[id]--;
+                saveCart(cart);
+                displayCart();
+            }
+        });
+    });
+
+    document.querySelectorAll('.increase-qty').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const cart = getCart();
+            cart[id]++;
+            saveCart(cart);
+            displayCart();
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
