@@ -23,7 +23,13 @@
 
 function filterGames() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    const filtered = games.filter(game => game.title.toLowerCase().includes(searchTerm));
+    const selectedGenre = document.querySelector('.category-btn.active')?.dataset.genre || 'all';
+
+    const filtered = games.filter(game =>
+        game.title.toLowerCase().includes(searchTerm) &&
+        (selectedGenre === 'all' || game.genre === selectedGenre)
+    );
+
     displayGames(filtered);
 }
 
@@ -31,5 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('games-container')) {
         displayGames(games);
         document.getElementById('search-input').addEventListener('input', filterGames);
+
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(item => item.classList.remove('active'));
+                btn.classList.add('active');
+                filterGames();
+            });
+        });
     }
 });
