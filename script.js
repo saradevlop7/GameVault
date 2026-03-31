@@ -21,8 +21,15 @@
     });
 }
 
+function filterGames() {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const filtered = games.filter(game => game.title.toLowerCase().includes(searchTerm));
+    displayGames(filtered);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('games-container')) {
         displayGames(games);
+        document.getElementById('search-input').addEventListener('input', filterGames);
     }
 });
