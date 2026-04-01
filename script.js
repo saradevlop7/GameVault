@@ -1,4 +1,4 @@
-﻿// script.js - Logique de l'application
+﻿
 
 function getCart() {
     const cart = localStorage.getItem('cart');
