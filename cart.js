@@ -9,13 +9,19 @@ function saveCart(cart) {
 }
 
 function updateCartCount() {
-    const countElement = document.getElementById('cart-count');
-    if (!countElement) return;
+    const el = document.getElementById('cart-count');
+    if (!el) return;
 
     const cart = getCart();
-    const count = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
-    countElement.textContent = count;
+    let total = 0;
+
+    for (let id in cart) {
+        total += cart[id];
+    }
+
+    el.textContent = total;
 }
+
 
 function addToCart(id) {
     const cart = getCart();

@@ -1,4 +1,4 @@
-﻿// data.js - Données des jeux vidéo
+﻿
 const games = [
     {
         id: 1,
