@@ -4,16 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('games-container')) {
         displayGames(games);
 
-        const input = document.getElementById('search-input');
-        if (input) {
-            input.addEventListener('input', filterGames);
-        }
+        document.getElementById('search-input').oninput = filterGames;
+
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.category-btn')
+                    .forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+                filterGames();
+            };
+        });
     }
 
     if (document.getElementById('cart-container')) {
         displayCart();
-
-        const btn = document.getElementById('order-btn');
-        if (btn) btn.onclick = order;
+        document.getElementById('order-btn').onclick = order;
     }
 });
