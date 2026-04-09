@@ -1,3 +1,8 @@
+Lien trello https://trello.com/invite/accept-board
+lien figma https://www.figma.com/design/TsPvEF5RHoZCxbxKLLcpit/Untitled?node-id=0-1&t=4VW84pIhSo7ZogWg-1
+lien canva https://www.canva.com/design/DAHFhz_LUKk/ie0i4neOTlOeT0wzbl-5QQ/edit
+
+
 # 🎮 GameVault App
 
 ## 📌 Description
