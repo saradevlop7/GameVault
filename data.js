@@ -5,6 +5,7 @@ const games = [
         title: "The Legend of Zelda: Breath of the Wild",
         image: "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
         price: 59.99,
+        
         genre: "Action"
     },
     {

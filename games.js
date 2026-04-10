@@ -37,3 +37,6 @@ function filterGames() {
 
     displayGames(result);
 }
+function getAveragePrice(){
+   if 
+}
