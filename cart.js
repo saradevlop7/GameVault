@@ -9,23 +9,12 @@ function saveCart(cart) {
 }
 
 function updateCartCount() {
-    const el = document.getElementById('cart-count');
-    if (!el) return;
-
-    const cart = getCart();
-    let total = 0;
-
-    for (let id in cart) {
-        total += cart[id];
+    const updateCartCount = 
     }
 
     el.textContent = total;
 }
 
-
 function addToCart(id) {
-    const cart = getCart();
-    cart[id] = (cart[id] || 0) + 1;
-    saveCart(cart);
-    alert('Jeu ajouté au panier !');
+   const
 }
